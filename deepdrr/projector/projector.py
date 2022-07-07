@@ -23,9 +23,11 @@ from .mcgpu_mfp_data import MFP_DATA
 from .mcgpu_rita_samplers import rita_samplers
 
 
-import pycuda.autoinit
+# import pycuda.autoinit
 import pycuda.driver as cuda
-from pycuda.autoinit import context
+# from pycuda.autoinit import context
+cuda.init()
+context = cuda.Device(1).make_context()
 from pycuda.compiler import SourceModule
 
 log = logging.getLogger(__name__)
@@ -197,10 +199,11 @@ class Projector(object):
         if carm is not None:
             self.source_to_detector_distance = carm.source_to_detector_distance
         else:
+            self.source_to_detector_distance = None
             log.warning(
                 "No way to specify source-to-detector distance without a MobileCArm parameter"
             )
-            raise ValueError("No source_to_detector_distance")
+            # raise ValueError("No source_to_detector_distance")
         self.carm = carm
         self.step = step
         self.mode = mode
