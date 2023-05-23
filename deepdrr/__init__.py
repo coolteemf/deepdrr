@@ -1,5 +1,6 @@
-from . import vis, geo, projector, device, annotations, utils
-from .projector import Projector
+from . import vis, geo, device, annotations, utils
+# from . import projector
+# from .projector import Projector
 from .vol import Volume
 from .device import CArm, MobileCArm
 from .annotations import LineAnnotation
