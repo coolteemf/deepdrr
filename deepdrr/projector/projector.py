@@ -42,27 +42,18 @@ from pyrender.platforms import egl
 from ..pyrenderdrr.renderer import Renderer
 
 from functools import lru_cache
-
-import cupy as cp
-import cupy
-
 import numpy
-from cuda import cudart
-from cupyx.profiler import time_range
-from ..utils.cuda_utils import check_cudart_err, format_cudart_err
-import cupyx.profiler
+
+if CUDA_AVAILABLE:
+    import cupy as cp
+    import cupy
+    from cuda import cudart
+    from cupyx.profiler import time_range
+    from ..utils.cuda_utils import check_cudart_err, format_cudart_err
+    import cupyx.profiler
 
 from matplotlib import pyplot as plt
 
-# try:
-#     from pycuda.tools import make_default_context
-#     from pycuda.driver import Context as context
-#     import pycuda.driver as cuda
-#     import pycuda.gl
-#     import pycuda
-#     from pycuda.compiler import SourceModule
-# except ImportError:
-#     logging.warning('pycuda unavailable')
 
 from ..utils.output_logger import OutputLogger
 import contextlib

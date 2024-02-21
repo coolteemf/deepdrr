@@ -1,7 +1,8 @@
+CUDA_AVAILABLE = True
 try:
     import cupy
 except ImportError:
-    raise ImportError(
+    print(
         """CuPy must be installed to use DeepDRR.
 Please install the version of CuPy for your CUDA Toolkit version by following the instructions here: https://cupy.dev/
 Or by installing deepdrr with the optional CuPy extra for your CUDA Toolkit version:
@@ -14,6 +15,7 @@ pip install deepdrr[cuda12x] # for CUDA 12.x
 You can find which version of CUDA you have by running `nvcc --version` in your terminal.
 """
     )
+    CUDA_AVAILABLE = False
 
 from . import vis, geo, projector, device, annotations, utils
 from .projector import Projector

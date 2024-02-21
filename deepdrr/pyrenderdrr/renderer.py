@@ -4,8 +4,9 @@ from pathlib import Path
 from pyrender.constants import (RenderFlags, ProgramFlags, BufFlags)
 from pyrender.shader_program import ShaderProgramCache
 from .material import DRRMaterial
-from ..utils.cuda_utils import check_cudart_err, format_cudart_err
-from cuda import cudart
+if CUDA_AVAILABLE:
+    from ..utils.cuda_utils import check_cudart_err, format_cudart_err
+    from cuda import cudart
 import sys
 
 class DRRMode:
